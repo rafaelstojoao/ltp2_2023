@@ -4,16 +4,38 @@
  */
 package Grafo;
 
+import java.util.Random;
+
 /**
  *
  * @author unifai
  */
 public class Status {
-    public String descricao;
-    private int codigo;
+    protected String Descricao;
+    protected Boolean Ativo;
+    protected int Id;
     
-    public Status(int codigo, String descricao){
-       this.codigo = codigo;
-       this.descricao = descricao;
-    }       
+    public Status(String descricao){
+       Random r = new Random();
+       this.Id = r.nextInt();
+       this.Descricao = descricao;
+       this.Ativo = true;
+    }    
+    
+    public Status(){
+       Random r = new Random();
+       this.Id = r.nextInt();
+       this.Descricao = "Ativo";
+       this.Ativo = true;
+    }
+    
+    protected void InativaStatus(){
+        this.Ativo = false;
+        this.Descricao = "Inativo";
+    }
+    
+    protected void BloqueiaStatus(){
+        this.Ativo = false;
+        this.Descricao = "Bloqueado";
+    }
 }

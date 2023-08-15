@@ -29,7 +29,6 @@ public class Calculadora {
     public static void main(String[] args) {
         Calculadora hp = new Calculadora();
         Calculadora multilaser = new Calculadora();
-        Calculadora microsoft = new Calculadora();
         
         System.out.println(hp.somar(5, 6));
         System.out.println(multilaser.somar(5.24f, 6.56f));

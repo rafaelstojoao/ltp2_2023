@@ -4,13 +4,21 @@
  */
 package com.mycompany.faindmap;
 
-import Grafo.*;
+import Grafo.Grafo;
 
-/**
- *
- * @author unifai
- */
 public class Main {
-    Grafo grafo = new Grafo();
-
+    
+    public static void main(String[] args) {
+        Grafo grafo = new Grafo();
+        for (int i = 0; i < 3; i++) {
+            if (i == 1) {
+                grafo.vertice.get(i).MudaNome("Sala 6");
+                grafo.vertice.get(i).MudaAndar("1");
+                grafo.vertice.get(i).MudaBloco("4");
+                grafo.vertice.get(i).MudaCampos("2");
+                grafo.vertice.get(i).MudaNumeroSala(6);
+                grafo.vertice.get(i).MudaLocalizacao(38.736946, -9.142685, 87);
+            }
+        }
+    }
 }

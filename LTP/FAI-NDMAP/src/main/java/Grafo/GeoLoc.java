@@ -5,7 +5,31 @@
 package Grafo;
 
 public class GeoLoc {
-    public long longitude;
-    public long latitude;
-    public long altitude;
+    double Longitude;
+    double Latitude;
+    double Altitude;
+    
+    public void MudaLongitude(double longitude){
+        this.Longitude = longitude;
+    }
+    
+    public double RetornaLongitude(){
+        return this.Longitude;
+    }
+    
+    public void MudaLatitude(double latitude){
+        this.Latitude = latitude;
+    }
+    
+    public double RetornaLatitude(){
+        return this.Latitude;
+    }
+    
+    public void MudaAltitude(double altitude){
+        this.Altitude = altitude;
+    }
+    
+    public double RetornaAltitude(){
+        return this.Altitude;
+    }
 }

@@ -9,8 +9,8 @@ package Grafo;
  * @author unifai
  */
 public class Direcao {
-    public static final int Direta  = 1;
-    public static final int Esquerda = 2;
-    public static final int Frente = 3;
-    public static final int Traz = 4; 
+    public static final int DIREITA  = 1;
+    public static final int ESQUERDA = 2;
+    public static final int FRENTE = 3;
+    public static final int TRAZ = 4; 
 }
