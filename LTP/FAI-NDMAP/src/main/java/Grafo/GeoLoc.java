@@ -8,6 +8,7 @@ public class GeoLoc {
     double Longitude;
     double Latitude;
     double Altitude;
+    int Id;
     
     public void MudaLongitude(double longitude){
         this.Longitude = longitude;

@@ -6,10 +6,7 @@ package Grafo;
 
 import java.util.Random;
 
-/**
- *
- * @author unifai
- */
+// Revisãr para fazer Enum com Status
 public class Status {
     protected String Descricao;
     protected Boolean Ativo;
