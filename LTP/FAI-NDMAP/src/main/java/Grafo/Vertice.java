@@ -4,6 +4,7 @@
  */
 package Grafo;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Vertice {
@@ -14,13 +15,12 @@ public class Vertice {
     private Integer NumeroSala;
     private Status Status;
     private String Campos;
-    private final Integer Id;
+    private final int Id;
     
     
     public Vertice(){
         Random r = new Random();
         this.Id = r.nextInt();
-        this.Status = new Status();
     }
     
     public void MudaNome(String nome){
@@ -32,13 +32,18 @@ public class Vertice {
     }
     
     public void MudaLocalizacao(double latitude, double longitudo, double elevacao){
+        Coordenadas = new GeoLoc();
         this.Coordenadas.Altitude = latitude;
         this.Coordenadas.Latitude = longitudo;
         this.Coordenadas.Longitude = elevacao;
     }
     
-    public GeoLoc RetornaLocalizacao(){
-        return this.Coordenadas;
+    public ArrayList<Double> RetornaLocalizacao(){
+        ArrayList<Double> CoordenadasMap = new ArrayList<>();
+        CoordenadasMap.add(this.Coordenadas.Latitude);
+        CoordenadasMap.add(this.Coordenadas.Longitude);
+        CoordenadasMap.add(this.Coordenadas.Altitude);
+        return CoordenadasMap;
     }
     
     public void MudaBloco(String bloco){

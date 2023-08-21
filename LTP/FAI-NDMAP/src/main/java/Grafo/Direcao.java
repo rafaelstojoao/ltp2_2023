@@ -4,13 +4,6 @@
  */
 package Grafo;
 
-/**
- *
- * @author unifai
- */
-public class Direcao {
-    public static final int DIREITA  = 1;
-    public static final int ESQUERDA = 2;
-    public static final int FRENTE = 3;
-    public static final int TRAZ = 4; 
+public enum Direcao {
+    DIREITA, ESQUERDA,FRENTE,TRAZ; 
 }
