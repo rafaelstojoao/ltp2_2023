@@ -4,17 +4,13 @@
  */
 package com.mycompany.faind_map;
 
-/**
- *
- * @author unifai
- */
 public class Direcao {
     
-    public int Codigo;
+    public int Id;
     public String Descricao;
     
     public Direcao(int codigo, String descricao) {
-        this.Codigo = codigo;
+        this.Id = codigo;
         this.Descricao = descricao;
     }
     

@@ -4,10 +4,6 @@
  */
 package com.mycompany.faind_map;
 
-/**
- *
- * @author unifai
- */
 public class GeoLoc {
     
     public long Longitude;

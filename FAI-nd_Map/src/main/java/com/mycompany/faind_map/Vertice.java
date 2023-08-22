@@ -4,10 +4,6 @@
  */
 package com.mycompany.faind_map;
 
-/**
- *
- * @author unifai
- */
 public class Vertice {
     
     public int ID;

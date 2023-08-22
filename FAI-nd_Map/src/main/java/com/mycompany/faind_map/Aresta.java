@@ -4,15 +4,11 @@
  */
 package com.mycompany.faind_map;
 
-/**
- *
- * @author unifai
- */
 public class Aresta {
     
+    public int ID;
     public Vertice Origem;
     public Vertice Destino;
     public Direcao Direcao;
     public double Distancia;
-    
 }
