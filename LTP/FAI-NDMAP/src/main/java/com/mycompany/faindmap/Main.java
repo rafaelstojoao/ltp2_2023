@@ -6,12 +6,18 @@ package com.mycompany.faindmap;
 
 import Grafo.Direcao;
 import Grafo.Grafo;
+import java.sql.SQLException;
 
 public class Main {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException{
+        Conexao c = new Conexao();
+        c.Conecta();      
+        
+        c.Grava("INSERT INTO vertice (nome) values ('Sala 1');");
+        c.ListData("SELECT * FROM vertice");
+        
         Grafo grafo = new Grafo();
-        Direcao direita = Direcao.DIREITA;
         grafo.CriaAresta();
         for (int i = 0; i < 3; i++) {
             if (i == 0) {
@@ -23,7 +29,7 @@ public class Main {
                 grafo.vertices.get(i).MudaCampos("2");
                 grafo.vertices.get(i).MudaNumeroSala(6);
                 grafo.vertices.get(i).MudaLocalizacao(38.736946, -9.142685, 87);
-                grafo.arestas.get(i).MudaDirecao(direita);
+                grafo.arestas.get(i).MudaDirecao(Direcao.DIREITA);
             }
         }
         
