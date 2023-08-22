@@ -10,11 +10,11 @@ import java.util.Random;
 public class Vertice {
     private String Nome;
     private GeoLoc Coordenadas;
-    private String Bloco;
-    private String Andar;
-    private Integer NumeroSala;
+    private int Bloco;
+    private int Andar;
+    private int NumeroSala;
     private Status Status;
-    private String Campos;
+    private int Campos;
     private final int Id;
     
     
@@ -46,19 +46,29 @@ public class Vertice {
         return CoordenadasMap;
     }
     
-    public void MudaBloco(String bloco){
+    public Double RetornaLatitude(){
+        return this.Coordenadas.Latitude;
+    }
+    public Double RetornaLongitude(){
+        return this.Coordenadas.Longitude;
+    }
+    public Double RetornaAltitude(){
+        return this.Coordenadas.Altitude;
+    }
+    
+    public void MudaBloco(int bloco){
         this.Bloco = bloco;
     }
     
-    public String RetornaBloco(){
+    public int RetornaBloco(){
         return this.Bloco;
     }
     
-    public void MudaAndar(String andar){
+    public void MudaAndar(int andar){
         this.Andar = andar;
     }
     
-    public String RetornaAndar(){
+    public int RetornaAndar(){
         return this.Andar;
     }
     
@@ -66,7 +76,7 @@ public class Vertice {
         this.NumeroSala = numeroSala;
     }
     
-    public Integer RetornaNumeroSala(){
+    public int RetornaNumeroSala(){
         return this.NumeroSala;
     }
     
@@ -78,11 +88,11 @@ public class Vertice {
         return this.Status; 
     }
     
-    public void MudaCampos(String campos){
+    public void MudaCampos(int campos){
         this.Campos = campos;
     }
     
-    public String RetornaCampos(){
+    public int RetornaCampos(){
         return this.Campos;
     }
     

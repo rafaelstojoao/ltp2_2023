@@ -16,8 +16,8 @@ import java.sql.Statement;
  */
 public class Conexao {
     String url = "jdbc:mysql://localhost:3306/faindmapdb";
-    private final String user = "root";
-    private final String senha = "";
+    private final String user = "sistema";
+    private final String senha = "om315";
     
     public Connection con = null;
     public Statement stmt = null;
