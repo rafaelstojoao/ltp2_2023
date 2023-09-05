@@ -235,7 +235,7 @@ public class Main {
         grafo.arestas.get(0).MudaDirecao(RetornaDirecao());
         System.out.println("-------------------------------------------------------------");
         
-        System.out.print("Qual a distância: ");
+        System.out.print("Qual a distância em metros: ");
         grafo.arestas.get(0).MudaDistancia(teclado.nextDouble()); 
         System.out.println("-------------------------------------------------------------");
         
@@ -294,11 +294,39 @@ public class Main {
     
     public static void main(String[] args) throws SQLException{
         var InstaciaClass = new Main();
+        InstaciaClass.Menu();    
+    }
+    
+    public void Menu() throws SQLException{
+        Scanner teclado = new Scanner(System.in);
         Grafo grafo = new Grafo();
         Conexao c = new Conexao();
+        int vOpcao ; 
+        
         c.Conecta();
         
-        //InstaciaClass.CriaVertice(c, grafo);
-        InstaciaClass.CriaAresta(c, grafo);
+        do {
+            System.out.println("0 -> Para sair ");
+            System.out.println("1 -> Criar Sala ");
+            System.out.println("2 -> Criar Conexao ");
+            System.out.println("Digite o que deseja fazer: ");
+            vOpcao = teclado.nextInt();
+            
+            switch (vOpcao) {
+                case 1 -> {
+                   CriaVertice(c, grafo); 
+                }
+                case 2 -> {
+                    CriaAresta(c, grafo);
+     
+                }
+                case 0 -> {
+                    System.out.println("Flw pau na zorba");   
+                }
+                default -> {
+                   System.out.println("Opção não encontrada ");
+                }
+            }   
+        } while (vOpcao != 0);
     }
 }

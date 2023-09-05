@@ -46,7 +46,7 @@ CREATE TABLE `aresta` (
   KEY `are_destino` (`are_destino`),
   CONSTRAINT `aresta_ibfk_1` FOREIGN KEY (`are_origem`) REFERENCES `vertices` (`cod_vertice`),
   CONSTRAINT `aresta_ibfk_2` FOREIGN KEY (`are_destino`) REFERENCES `vertices` (`cod_vertice`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `aresta` */
 
@@ -104,7 +104,7 @@ CREATE TABLE `vertices` (
   CONSTRAINT `vertices_ibfk_1` FOREIGN KEY (`cod_campos`) REFERENCES `campos` (`cod_campos`),
   CONSTRAINT `vertices_ibfk_2` FOREIGN KEY (`cod_andar`) REFERENCES `andares` (`cod_andar`),
   CONSTRAINT `vertices_ibfk_3` FOREIGN KEY (`cod_bloco`) REFERENCES `blocos` (`cod_bloco`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `vertices` */
 
