@@ -1,6 +1,7 @@
 package com.mycompany.faindmap;
 
 
+import Fomularios.Principal;
 import Grafo.Direcao;
 import Grafo.Grafo;
 import Grafo.Status;
@@ -293,8 +294,14 @@ public class Main {
     }
     
     public static void main(String[] args) throws SQLException{
-        var InstaciaClass = new Main();
-        InstaciaClass.Menu();    
+        //var InstaciaClass = new Main();
+        //InstaciaClass.Menu();    
+        
+        Conexao c = new Conexao();
+        c.Conecta();
+        
+        Principal frm = new Principal();
+        frm.setVisible(true);
     }
     
     public void Menu() throws SQLException{
