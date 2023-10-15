@@ -4,53 +4,14 @@
  */
 package Grafo;
 
-import java.util.Random;
-
-public class Aresta {   
-    private Vertice Origem;
-    private Vertice Destino;
-    private Direcao Direcao ;
-    private Double Distancia;
-    private final int Id;
-    
-    public Aresta(){
-        Random r = new Random();
-        this.Id = r.nextInt();
-    }
-    
-    public int RetornaID(){
-        return Id;
-    }
-    
-    public Double RetornaDistancia(){
-        return Distancia;
-    }
-    
-    public Direcao RetornaDirecao(){
-        return Direcao;
-    }
-    
-    public Vertice RetornaDestino(){
-        return Destino;
-    }
-    
-    public Vertice RetornaOrigem(){
-        return Origem;
-    }
-    
-    public void MudaDistancia(Double distancia){
-        this.Distancia = distancia;
-    }
-    
-    public void MudaDirecao(Direcao direcao){
-        this.Direcao = direcao;
-    }
-    
-    public void MudaDestino(Vertice destino){
-        this.Destino = destino;
-    }
-    
-    public void MudaOrigem(Vertice origem){
-        this.Origem = origem;
-    }
+/**
+ *
+ * @author Guilherme Cezarine
+ */
+public class Aresta {
+  public int cod_aresta;
+  public int are_origem;
+  public int are_destino;
+  public Direcao are_direcao;
+  public double are_distancia;
 }

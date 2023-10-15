@@ -2,57 +2,64 @@ package com.mycompany.faindmap;
 
 
 import Fomularios.Principal;
+import Grafo.Aresta;
 import Grafo.Direcao;
 import Grafo.Grafo;
+import Grafo.Vertice;
 import Grafo.Status;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public void CriaVertice(Conexao c, Grafo grafo) throws SQLException{
-        grafo.CriarVertice();
-        
+    public void CriaVertice(Conexao c, Grafo grafo) throws SQLException{        
         PerguntasVertice(grafo, c);
-        GravaVertice(grafo, c);
-        
+        GravaVertice(grafo, c);    
     }
     public void PerguntasVertice(Grafo grafo, Conexao c) throws SQLException{
         Scanner teclado = new Scanner(System.in);
+        String nome;
+        Vertice vertice = new Vertice();
         
         System.out.println("Digite um nome: ");
-        grafo.vertices.get(0).MudaNome(teclado.nextLine()); 
+        vertice.setVer_nome(teclado.nextLine()); 
 
         System.out.println("-------------------------------------------------------------");
-        grafo.vertices.get(0).MudaAndar(RetornaAndar(c));
+        vertice.setCod_andar(RetornaAndar(c));
         
         System.out.println("-------------------------------------------------------------");
-        grafo.vertices.get(0).MudaBloco(RetornaBloco(c));
+        vertice.setCod_bloco(RetornaBloco(c));
         
         System.out.println("-------------------------------------------------------------");
-        grafo.vertices.get(0).MudaCampos(RetornaCampos(c));
+        vertice.setCod_campos(RetornaCampos(c));
         System.out.println("-------------------------------------------------------------");
         
         System.out.println("Digite o Número da Sala: ");
-        grafo.vertices.get(0).MudaNumeroSala(teclado.nextInt());
+        vertice.setVer_numero_sala(teclado.nextInt());
         System.out.println("-------------------------------------------------------------");
         
-        System.out.println("-------------------------------------------------------------");
-        System.out.println("Digite o Latitude, Longitude e Altitude respectivamente: ");
-        grafo.vertices.get(0).MudaLocalizacao(teclado.nextDouble(), teclado.nextDouble(), teclado.nextDouble());
-        System.out.println("-------------------------------------------------------------");
+//        System.out.println("-------------------------------------------------------------");
+//        System.out.println("Digite o Longitude, Latitude e Altitude respectivamente: ");
+//        vertice.setCoordenadas(teclado.nextDouble(), teclado.nextDouble(), teclado.nextDouble());
+//        System.out.println("-------------------------------------------------------------");
         
-        grafo.vertices.get(0).MudaStatus(RetornaStatus());
+        vertice.setVer_status(RetornaStatus());
+        
+        grafo.adicionarVertice(vertice);
     }
     public void GravaVertice(Grafo grafo, Conexao c) throws SQLException{
+        String sql ="INSERT INTO vertices (ver_nome, cod_andar, cod_bloco, cod_campos, ver_numero_sala, ver_status) values(?,?,?,?,?,?)"; 
+        c.pstmt = c.con.prepareStatement(sql);  
         
-        c.Grava("INSERT INTO vertices (ver_nome, cod_andar, cod_bloco, cod_campos, ver_numero_sala, ver_coordenadas, ver_status) values( '" + 
-            grafo.vertices.get(0).RetornaNome() + "', '" + grafo.vertices.get(0).RetornaAndar() + "', '" + 
-            grafo.vertices.get(0).RetornaBloco() + "', '" + grafo.vertices.get(0).RetornaCampos() + "', " +
-            grafo.vertices.get(0).RetornaNumeroSala() + ", ('" + grafo.vertices.get(0).RetornaLatitude() + ", " + 
-            grafo.vertices.get(0).RetornaLongitude() + ", " + grafo.vertices.get(0).RetornaAltitude() + "'), '" +
-            grafo.vertices.get(0).RetornaStatus() + "');"
-        );
+        c.pstmt.setString(1, grafo.vertices.get(0).getVer_nome());
+        c.pstmt.setInt(2, grafo.vertices.get(0).getCod_andar());
+        c.pstmt.setInt(3, grafo.vertices.get(0).getCod_bloco());
+        c.pstmt.setInt(4, grafo.vertices.get(0).getCod_campos());
+        c.pstmt.setInt(5, grafo.vertices.get(0).getVer_numero_sala());
+        c.pstmt.setString(6, grafo.vertices.get(0).getVer_status().toString());
+        c.pstmt.execute();
+        c.pstmt.close();
     }
     public int BuscaVertice(Conexao c, int Origem) throws SQLException{
         Scanner teclado = new Scanner(System.in);
@@ -222,7 +229,7 @@ public class Main {
     public void CriaAresta(Conexao c, Grafo grafo) throws SQLException{
         Scanner teclado = new Scanner(System.in);
         int vOrigem, Destino;
-        grafo.CriaAresta();
+        Aresta aresta = new Aresta();
         
         System.out.print("Escolha a sala Origem (pelo código): ");
         vOrigem = BuscaVertice(c, 0);
@@ -233,16 +240,18 @@ public class Main {
         System.out.println("-------------------------------------------------------------");
         
         System.out.print("Qual a direção: ");
-        grafo.arestas.get(0).MudaDirecao(RetornaDirecao());
+        aresta.are_direcao = RetornaDirecao();
         System.out.println("-------------------------------------------------------------");
         
         System.out.print("Qual a distância em metros: ");
-        grafo.arestas.get(0).MudaDistancia(teclado.nextDouble()); 
+        aresta.are_distancia = teclado.nextDouble(); 
         System.out.println("-------------------------------------------------------------");
         
+        grafo.adicionarAresta(aresta);
+        
         c.Grava("INSERT INTO aresta (are_origem, are_destino, are_direcao, are_distancia) values( " + 
-                vOrigem + ", " + Destino + ", '" + grafo.arestas.get(0).RetornaDirecao() + "', " + 
-                grafo.arestas.get(0).RetornaDistancia() + ");"
+                vOrigem + ", " + Destino + ", '" + grafo.vertices.get(0).getArestas().get(vOrigem).are_direcao + "', " + 
+                grafo.vertices.get(0).getArestas().get(vOrigem).are_distancia + ");"
         );
         System.out.print("Ligação criada");
     }
@@ -294,14 +303,14 @@ public class Main {
     }
     
     public static void main(String[] args) throws SQLException{
-        //var InstaciaClass = new Main();
-        //InstaciaClass.Menu();    
+        var InstaciaClass = new Main();
+        InstaciaClass.Menu();    
         
-        Conexao c = new Conexao();
-        c.Conecta();
-        
-        Principal frm = new Principal();
-        frm.setVisible(true);
+//        Conexao c = new Conexao();
+//        c.Conecta();
+
+//        Principal frm = new Principal();
+//        frm.setVisible(true);
     }
     
     public void Menu() throws SQLException{
@@ -325,9 +334,19 @@ public class Main {
                 }
                 case 2 -> {
                     CriaAresta(c, grafo);
-     
                 }
                 case 0 -> {
+                    double LDistancia;
+                    Map<Integer, Double> distancias = grafo.dijkstra(1);
+                    LDistancia = grafo.dijkstra(1, 4);
+
+                    System.out.println("Distância de " + 1 + " para " + "4" + ": " + LDistancia);
+
+//                    for (Map.Entry<Integer, Double> entrada : distancias.entrySet()) {
+//                        int destino = entrada.getKey();
+//                        LDistancia = entrada.getValue();
+//                        System.out.println("Distância de " + LInicio + " para " + destino + ": " + LDistancia);
+//                    }
                     System.out.println("Flw pau na zorba");   
                 }
                 default -> {

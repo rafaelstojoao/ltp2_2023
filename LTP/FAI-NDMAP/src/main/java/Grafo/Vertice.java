@@ -5,98 +5,140 @@
 package Grafo;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Vertice {
-    private String Nome;
-    private GeoLoc Coordenadas;
-    private int Bloco;
-    private int Andar;
-    private int NumeroSala;
-    private Status Status;
-    private int Campos;
-    private final int Id;
+/**
+ *
+ * @author Guilherme Cezarine
+ */
+ public class Vertice implements Comparable<Vertice> {
+     
+    private int cod_campos;
+    private String ver_nome;
+    private int cod_bloco;
+    private int cod_andar;
+    private int cod_vertice;
+    private int ver_numero_sala;
+    public GeoLoc ver_coordenadas;
+    private Status ver_status;
     
-    
-    public Vertice(){
-        Random r = new Random();
-        this.Id = r.nextInt();
+    private double peso;  
+    private Map<Integer, Aresta> arestas;
+    private Map<Vertice, Double> vizinhos;
+
+    public int getCod_campos() {
+        return cod_campos;
+    }
+
+    public String getVer_nome() {
+        return ver_nome;
+    }
+
+    public int getCod_bloco() {
+        return cod_bloco;
+    }
+
+    public int getCod_andar() {
+        return cod_andar;
+    }
+
+    public int getCod_vertice() {
+        return cod_vertice;
+    }
+
+    public int getVer_numero_sala() {
+        return ver_numero_sala;
+    }
+
+    public Status getVer_status() {
+        return ver_status;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public Map<Integer, Aresta> getArestas() {
+        return arestas;
+    }
+
+    public void setCod_campos(int cod_campos) {
+        this.cod_campos = cod_campos;
+    }
+
+    public void setVer_nome(String ver_nome) {
+        this.ver_nome = ver_nome;
+    }
+
+    public void setCod_bloco(int cod_bloco) {
+        this.cod_bloco = cod_bloco;
+    }
+
+    public void setCod_andar(int cod_andar) {
+        this.cod_andar = cod_andar;
+    }
+
+    public void setCod_vertice(int cod_vertice) {
+        this.cod_vertice = cod_vertice;
+    }
+
+    public void setVer_numero_sala(int ver_numero_sala) {
+        this.ver_numero_sala = ver_numero_sala;
+    }
+
+    public void setVer_status(Status ver_status) {
+        this.ver_status = ver_status;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public void setArestas(Map<Integer, Aresta> arestas) {
+        this.arestas = arestas;
     }
     
-    public void MudaNome(String nome){
-        this.Nome = nome;
+    public void Add(Vertice vertice) {
+        this.cod_vertice = vertice.cod_vertice;
+        this.vizinhos = new HashMap<>();
+        this.peso = Integer.MAX_VALUE;
+        
+        this.cod_campos = vertice.cod_campos;
+        this.cod_andar = vertice.cod_andar;
+        this.cod_bloco = vertice.cod_bloco;
+        this.ver_nome = vertice.ver_nome;
+    }
+
+    public void setCoordenadas(double ALongitude, double ALatitude, double AAltitude){
+        ver_coordenadas.Longitude= ALongitude;
+        ver_coordenadas.Latitude = ALatitude;
+        ver_coordenadas.Altitude = AAltitude;
     }
     
-    public String RetornaNome(){
-        return this.Nome;
+    public void adicionarAresta(Aresta aresta, Vertice vizinho, double peso) {
+        vizinhos.put(vizinho, peso);
+        arestas.put(aresta.are_origem, aresta);
     }
-    
-    public void MudaLocalizacao(double latitude, double longitudo, double elevacao){
-        Coordenadas = new GeoLoc();
-        this.Coordenadas.Altitude = latitude;
-        this.Coordenadas.Latitude = longitudo;
-        this.Coordenadas.Longitude = elevacao;
+
+    public int getCodVertice() {
+        return cod_vertice;
     }
-    
-    public ArrayList<Double> RetornaLocalizacao(){
-        ArrayList<Double> CoordenadasMap = new ArrayList<>();
-        CoordenadasMap.add(this.Coordenadas.Latitude);
-        CoordenadasMap.add(this.Coordenadas.Longitude);
-        CoordenadasMap.add(this.Coordenadas.Altitude);
-        return CoordenadasMap;
+
+    public Map<Vertice, Double> getVizinhos() {
+        return vizinhos;
     }
-    
-    public Double RetornaLatitude(){
-        return this.Coordenadas.Latitude;
+
+    public double getDistancia() {
+        return peso;
     }
-    public Double RetornaLongitude(){
-        return this.Coordenadas.Longitude;
+
+    public void setDistancia(double distancia) {
+        this.peso = distancia;
     }
-    public Double RetornaAltitude(){
-        return this.Coordenadas.Altitude;
-    }
-    
-    public void MudaBloco(int bloco){
-        this.Bloco = bloco;
-    }
-    
-    public int RetornaBloco(){
-        return this.Bloco;
-    }
-    
-    public void MudaAndar(int andar){
-        this.Andar = andar;
-    }
-    
-    public int RetornaAndar(){
-        return this.Andar;
-    }
-    
-    public void MudaNumeroSala(Integer numeroSala){
-        this.NumeroSala = numeroSala;
-    }
-    
-    public int RetornaNumeroSala(){
-        return this.NumeroSala;
-    }
-    
-    public void MudaStatus(Status status){
-        this.Status = status;
-    }
-    
-    public Status RetornaStatus(){
-        return this.Status; 
-    }
-    
-    public void MudaCampos(int campos){
-        this.Campos = campos;
-    }
-    
-    public int RetornaCampos(){
-        return this.Campos;
-    }
-    
-    public Integer RetornaId(){
-        return this.Id;
+
+    @Override
+    public int compareTo(Vertice outro) {
+        return Double.compare(peso, outro.peso);
     }
 }

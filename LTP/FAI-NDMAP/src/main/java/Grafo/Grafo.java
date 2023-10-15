@@ -5,27 +5,106 @@
 package Grafo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 
-public class Grafo { 
-    public ArrayList<Vertice> vertices;
-    public ArrayList<Aresta> arestas;
+/**
+ *
+ * @author Guilherme Cezarine
+ */
+public class Grafo {
+    public Map<Integer, Vertice> vertices;
+
+    public Grafo() {
+        this.vertices = new HashMap<>();
+    }
+
+    public void adicionarVertice(Vertice vertice) {
+        if (!vertices.containsKey(vertice.getCodVertice())) {
+            vertice.Add(vertice);
+            vertices.put(vertice.getCodVertice(), vertice);
+        }
+    }
+
+    public void adicionarAresta(Aresta aresta) {
+        Vertice verticeOrigem = vertices.get(aresta.are_origem);
+        Vertice verticeDestino = vertices.get(aresta.are_destino);
+
+        if (verticeOrigem != null && verticeDestino != null) {
+            verticeOrigem.adicionarAresta(aresta, verticeDestino, aresta.are_distancia);
+        }
+    }
+
+    public double dijkstra(int inicio, int fim) {
+        double distancias = 0.00;
+        PriorityQueue<Vertice> filaPrioridade = new PriorityQueue<>(Comparator.comparingDouble(Vertice::getDistancia));
+        
+        Vertice verticeInicial = vertices.get(inicio);
+        
+        if (verticeInicial != null) {
+            for (Vertice vertice : vertices.values()) {
+                vertice.setDistancia(Integer.MAX_VALUE);
+            }
+            
+            verticeInicial.setDistancia(0);
+            filaPrioridade.add(verticeInicial);
+            
+            while (!filaPrioridade.isEmpty()) {
+                Vertice verticeAtual = filaPrioridade.poll();
+                for (Map.Entry<Vertice, Double> vizinho : verticeAtual.getVizinhos().entrySet()) {
+                    Vertice v = vizinho.getKey();
+                    double novaDistancia = verticeAtual.getDistancia() + vizinho.getValue();
+                    if (novaDistancia < v.getDistancia()) {
+                        v.setDistancia(novaDistancia);
+                        filaPrioridade.add(v);
+                    }
+                }
+            }
+            
+            for (Vertice vertice : vertices.values()) {
+                if (vertice.getCodVertice() == fim) {
+                    distancias = vertice.getDistancia();
+                } 
+            }
+        }
+        
+        return distancias;
+    }
     
-   public Grafo(){
-    this.vertices = new ArrayList<>();
-    this.arestas = new ArrayList<>(); 
-   } 
-   
-   public Vertice CriarVertice()
-   {
-       Vertice vVertice = new Vertice();
-       this.vertices.add(vVertice);  
-       return vVertice;
-   }
-   
-   public Aresta CriaAresta(){
-       Aresta vAresta = new Aresta();
-       this.arestas.add(vAresta);  
-       return vAresta;
-   }
-   
+    public Map<Integer, Double> dijkstra(int inicio) {
+        Map<Integer, Double> distancias = new HashMap<>();
+        PriorityQueue<Vertice> filaPrioridade = new PriorityQueue<>(Comparator.comparingDouble(Vertice::getDistancia));
+        
+        Vertice verticeInicial = vertices.get(inicio);
+        
+        if (verticeInicial != null) {
+            for (Vertice vertice : vertices.values()) {
+                vertice.setDistancia(Integer.MAX_VALUE);
+            }
+            
+            verticeInicial.setDistancia(0);
+            filaPrioridade.add(verticeInicial);
+            
+            while (!filaPrioridade.isEmpty()) {
+                Vertice verticeAtual = filaPrioridade.poll();
+                for (Map.Entry<Vertice, Double> vizinho : verticeAtual.getVizinhos().entrySet()) {
+                    Vertice v = vizinho.getKey();
+                    double novaDistancia = verticeAtual.getDistancia() + vizinho.getValue();
+                    if (novaDistancia < v.getDistancia()) {
+                        v.setDistancia(novaDistancia);
+                        filaPrioridade.add(v);
+                    }
+                }
+            }
+            
+            for (Vertice vertice : vertices.values()) {
+                distancias.put(vertice.getCodVertice(), vertice.getDistancia());
+            }
+        }
+        
+        return distancias;
+    }
 }
