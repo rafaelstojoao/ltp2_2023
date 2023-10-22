@@ -1,53 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.faindmap;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author unifai
- */
 public class Conexao {
-    String url = "jdbc:mysql://localhost:3306/faindmapdb";
-    private final String user = "sistema";
-    private final String senha = "om315";
+    public Statement stm; // Responsavel por preparar e realizar pesquisas no banco de dados;
+    public ResultSet rs; // Responsavel por armazenar o resultado de um pesquisa passada para o statement;
+    private String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private String servidor = "192.168.0.114";
+    private String banco = "faindmap";
+    private String usuario = "sa";
+    private String senha = "498123498";
     
-    public Connection con = null;
-    public Statement stmt = null;
-    
-    public void Conecta(){
+    private String caminho = "jdbc:sqlserver://"+ servidor +";databaseName=" + banco + ";user=" + usuario + ";password=" + senha; // O "control" representa a minha database 
+    public Connection conexao; // Responsavel por realizar a conexão com o banco de dados;
+
+    public void conectar() throws ClassNotFoundException, SQLException { 
         try{
-            this.con = DriverManager.getConnection(this.url, this.user, this.senha);
-            System.out.println("Conectado");
-        }
-        catch(SQLException e){
-            System.out.println(e.getMessage());
+            conexao = DriverManager.getConnection("jdbc:sqlserver://192.168.0.114:1433;databaseName=faindmap;user=sa;password=498123498");
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-    
-    public void Grava(String sql) throws SQLException{
-        stmt = con.createStatement();
-        if (stmt.execute(sql)) {
-            System.out.println("Gravado");
-        }
-    }
-    
-    public void ListData(String sql) throws SQLException{
-        stmt = con.createStatement();
-        
-        ResultSet res = stmt.executeQuery(sql);
-        
-        while (res.next()){
-            int ID = res.getInt("cod_vertice");
-            String Nome = res.getString("Nome");
-            System.out.println("ID: " + ID + "Nome: " + Nome);
+
+    public void desconectar() { // Metodo responsavel por fechar a conexão
+        try {
+            conexao.close(); // Fechar conexão
+            JOptionPane.showMessageDialog(null, "Conexão fechada com sucesso!", "Banco de Dados", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão!\nERRO: " + ex.getMessage(), "Banco de Dados", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }
