@@ -15,39 +15,22 @@ import java.sql.Statement;
  * @author unifai
  */
 public class Conexao2 {
-    String url = "jdbc:mysql://localhost:3306/faindmapdb";
+    String url = "jdbc:mysql://localhost:3306/dbfaindmap";
     private final String user = "sistema";
     private final String senha = "498123498";
     
     public Connection con = null;
     public Statement stmt = null;
+    public ResultSet res  = null;
     
     public void Conecta(){
-        try{
+        try{          
             this.con = DriverManager.getConnection(this.url, this.user, this.senha);
+            stmt = con.createStatement();
             System.out.println("Conectado");
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
-        }
-    }
-    
-    public void Grava(String sql) throws SQLException{
-        stmt = con.createStatement();
-        if (stmt.execute(sql)) {
-            System.out.println("Gravado");
-        }
-    }
-    
-    public void ListData(String sql) throws SQLException{
-        stmt = con.createStatement();
-        
-        ResultSet res = stmt.executeQuery(sql);
-        
-        while (res.next()){
-            int ID = res.getInt("cod_vertice");
-            String Nome = res.getString("Nome");
-            System.out.println("ID: " + ID + "Nome: " + Nome);
         }
     }
 }

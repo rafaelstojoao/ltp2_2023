@@ -13,16 +13,16 @@ public class Grafo {
     }
 
     public void adicionarVertice(Vertice vertice) {
-        if (!vertices.containsKey(vertice.cod_vertice)) {
+        if (!vertices.containsKey(vertice.id_vertice)) {
             vertice.Add(vertice);
-            vertices.put(vertice.cod_vertice, vertice);
+            vertices.put(vertice.id_vertice, vertice);
         }
     }
 
     public void adicionarAresta(Aresta aresta) {       
-        if (!arestas.containsKey(aresta.cod_aresta)) {
+        if (!arestas.containsKey(aresta.id_aresta)) {
             aresta.Add(aresta);
-            arestas.put(aresta.cod_aresta, aresta);
+            arestas.put(aresta.id_aresta, aresta);
         }
     }
     
@@ -30,8 +30,8 @@ public class Grafo {
         System.out.println("VERTICES:");
         for (Integer key: vertices.keySet()) {
             System.out.print("Key : " + key);
-            System.out.print(" Codigo : " + vertices.get(key).cod_vertice);
-            System.out.println(" Value : " + vertices.get(key).ver_nome);
+            System.out.print(" Codigo : " + vertices.get(key).id_vertice);
+            System.out.println(" Value : " + vertices.get(key).nome);
         }
     }
     
@@ -39,9 +39,9 @@ public class Grafo {
         System.out.println("ARESTAS:");
         for (Integer key: arestas.keySet()) {
             System.out.print("Key : " + key);
-            System.out.print(" Origem : " + arestas.get(key).are_origem);
-            System.out.print(" Destino : " + arestas.get(key).are_destino);
-            System.out.println(" Value : " + arestas.get(key).are_distancia);
+            System.out.print(" Origem : " + arestas.get(key).id_vertice_origem);
+            System.out.print(" Destino : " + arestas.get(key).id_vertice_destino);
+            System.out.println(" Value : " + arestas.get(key).distancia);
         }
     }
 }
