@@ -122,9 +122,10 @@ DROP TABLE IF EXISTS `vertices`;
 
 CREATE TABLE `vertices` (
   `id_vertice` int(11) NOT NULL AUTO_INCREMENT,
-  `id_status` int(11) NOT NULL,
   `id_bloco` int(11) NOT NULL,
   `id_andar` int(11) NOT NULL,
+  `numero_sala` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL,
   `id_campus` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `latitude` double DEFAULT NULL,
@@ -138,11 +139,11 @@ CREATE TABLE `vertices` (
   CONSTRAINT `vertices_ibfk_2` FOREIGN KEY (`id_bloco`) REFERENCES `blocos` (`id_bloco`),
   CONSTRAINT `vertices_ibfk_3` FOREIGN KEY (`id_andar`) REFERENCES `andares` (`id_andar`),
   CONSTRAINT `vertices_ibfk_4` FOREIGN KEY (`id_campus`) REFERENCES `campus` (`id_campus`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `vertices` */
 
-insert  into `vertices`(`id_vertice`,`id_status`,`id_bloco`,`id_andar`,`id_campus`,`nome`,`latitude`,`longitude`) values (1,1,4,6,2,'Sala 7',-21.66873550415039,-51.0775032043457),(2,1,4,6,2,'Sala 8',-21.66871,-51.077196),(3,1,4,6,2,'Sala 10',-21.66851,-51.077222),(4,1,4,6,2,'Sala 5',-21.67851,-51.089296),(5,1,4,6,2,'Sala 6',-21.616851,-51.097136),(6,1,4,3,2,'Cantina',-22.46729,-52.174571);
+insert  into `vertices`(`id_vertice`,`id_bloco`,`id_andar`,`numero_sala`,`id_status`,`id_campus`,`nome`,`latitude`,`longitude`) values (1,4,6,7,1,2,'Sala 7',-21.66873550415039,-51.0775032043457),(2,4,6,8,1,2,'Sala 8',-21.66871,-51.077196),(3,4,6,10,1,2,'Sala 10',-21.66851,-51.077222),(4,4,6,5,1,2,'Sala 5',-21.67851,-51.089296),(5,4,6,6,1,2,'Sala 6',-21.616851,-51.097136),(6,4,3,-1,1,2,'Cantina',-22.46729,-52.174571),(7,4,6,9,1,2,'Sala 7',-21.66873550415039,-51.0775032043457);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
