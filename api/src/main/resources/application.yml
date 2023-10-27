@@ -5,3 +5,4 @@ spring:
         username=sistema
         password=498123498
         flyway.baselineOnMigrate = true
+        

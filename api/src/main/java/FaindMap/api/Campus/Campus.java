@@ -23,9 +23,20 @@ public class Campus {
     private int id_status;
     private String descricao;
 
-    public Campus(Campus campus) {
-        this.id_status = campus.id_status;
-        this.descricao = campus.descricao;
+    public Campus(DadosCampus campus) {
+        this.id_status = campus.status();
+        this.descricao = campus.descricao();
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoCampus json) {
+        if (json.descricao() != null) {
+            this.descricao = json.descricao();
+        }
+        
+        if (json.status() != 0) {
+            this.id_status = json.status();
+        }
+        
     }
     
 }
