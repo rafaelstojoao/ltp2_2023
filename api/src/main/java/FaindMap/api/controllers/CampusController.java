@@ -1,10 +1,10 @@
 package FaindMap.api.controllers;
 
 import FaindMap.api.Campus.Campus;
-import FaindMap.api.Campus.CampusRepository;
 import FaindMap.api.Campus.DadosAtualizacaoCampus;
-import FaindMap.api.Campus.DadosCampus;
+import FaindMap.api.Campus.DadosCadastroCampus;
 import FaindMap.api.Campus.DadosListagemCampus;
+import FaindMap.api.Repository.CampusRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class CampusController {
     private CampusRepository repository;
     
     @PostMapping
-    public void cadastrar(@RequestBody @Valid DadosCampus json){
+    public void cadastrar(@RequestBody @Valid DadosCadastroCampus json){
         repository.save(new Campus(json));
     }
     

@@ -1,9 +1,12 @@
 package FaindMap.api.Campus;
 
+import FaindMap.api.Entity.Status;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -18,13 +21,17 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id_campus")
 public class Campus {
     
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_campus;
-    private int id_status;
     private String descricao;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_status")
+    private Status status;
 
-    public Campus(DadosCampus campus) {
-        this.id_status = campus.status();
+    public Campus(DadosCadastroCampus campus) {
+        this.status = campus.status();
         this.descricao = campus.descricao();
     }
 
@@ -33,8 +40,8 @@ public class Campus {
             this.descricao = json.descricao();
         }
         
-        if (json.status() != 0) {
-            this.id_status = json.status();
+        if (json.status() != null) {
+            this.status = json.status();
         }
         
     }

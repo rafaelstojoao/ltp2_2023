@@ -1,4 +1,4 @@
-package FaindMap.api.Vertice;
+package FaindMap.api.Repository;
 
 import FaindMap.api.Vertice.Vertice;
 import org.springframework.data.jpa.repository.JpaRepository;
