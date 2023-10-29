@@ -1,5 +1,7 @@
 package FaindMap.api.Vertice;
 
+import FaindMap.api.Andares.Andar;
+import FaindMap.api.Blocos.Bloco;
 import FaindMap.api.Campus.Campus;
 import FaindMap.api.Entity.Status;
 import jakarta.validation.constraints.NotBlank;
@@ -14,10 +16,10 @@ public record DadosCadastroVertice(
         Status status,
         
         @NotNull
-        int bloco,
+        Bloco bloco,
         
         @NotNull
-        int andar,
+        Andar andar,
         
         @NotNull 
         Campus campus,
