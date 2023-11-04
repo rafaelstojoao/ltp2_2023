@@ -1,7 +1,6 @@
 package FaindMap.api.Vertice;
 
 import FaindMap.api.Andares.Andar;
-import FaindMap.api.Arestas.Aresta;
 import FaindMap.api.Blocos.Bloco;
 import FaindMap.api.Campus.Campus;
 import FaindMap.api.Entity.Status;
@@ -11,9 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.List;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,6 +25,8 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id_vertice")
 public class Vertice {
     
+    @Transient
+    private double peso;
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_vertice;
@@ -44,13 +44,7 @@ public class Vertice {
     private Andar andar;
     @ManyToOne
     @JoinColumn(name = "id_bloco")
-    private Bloco bloco;
-    
-//    @ManyToOne
-//    private Aresta id_vertice_destino;
-//
-//    @ManyToOne
-//    private Aresta id_vertice_origem;
+    private Bloco bloco;   
    
     public Vertice(DadosCadastroVertice json) {
         this.nome       = json.nome();
@@ -60,6 +54,18 @@ public class Vertice {
         this.longitude  = json.longitude();
         this.status     = json.status();
         this.campus     = json.campus();
-        //this.id_campus =  new Campus(json.campus());
+    }
+    
+    public void Add(Vertice vertice) {
+        this.id_vertice = vertice.id_vertice;
+        this.peso = Integer.MAX_VALUE;
+        
+        this.campus = vertice.campus;
+        this.andar = vertice.andar;
+        this.bloco = vertice.bloco;
+        this.nome = vertice.nome;
+        this.status = vertice.status;
+        this.latitude = vertice.latitude;
+        this.longitude = vertice.longitude;
     }
 }
