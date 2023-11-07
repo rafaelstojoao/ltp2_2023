@@ -6,9 +6,6 @@ import jakarta.validation.constraints.NotNull;
 
 public record DadosCadastroCampus(
     @NotBlank   
-    String descricao,
-        
-    @NotNull    
-    Status status) {
+    String descricao) {
 
 }
