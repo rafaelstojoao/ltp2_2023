@@ -1,6 +1,6 @@
 package FaindMap.api.Andares;
 
-import FaindMap.api.Entity.Status;
+import FaindMap.api.Status.Status;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

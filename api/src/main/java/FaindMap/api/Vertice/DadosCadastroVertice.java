@@ -3,7 +3,8 @@ package FaindMap.api.Vertice;
 import FaindMap.api.Andares.Andar;
 import FaindMap.api.Blocos.Bloco;
 import FaindMap.api.Campus.Campus;
-import FaindMap.api.Entity.Status;
+import FaindMap.api.Locais.Local;
+import FaindMap.api.Status.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -23,6 +24,9 @@ public record DadosCadastroVertice(
         
         @NotNull 
         Campus campus,
+        
+        @NotNull 
+        Local local,
         
         @NotNull
         @Pattern(regexp = "\\-?[0-9]*[.]?[0-9]+")

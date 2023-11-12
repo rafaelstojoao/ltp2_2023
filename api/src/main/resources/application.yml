@@ -1,8 +1,0 @@
-spring:
-    datasource:
-        driver-class-name=com.mysql.cj.jdbc.Driver
-        url=jdbc:mysql://localhost/dbfaindmap
-        username=sistema
-        password=498123498
-        flyway.baselineOnMigrate = true
-        

@@ -55,7 +55,7 @@ public class Dijkstra {
                     (this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).estimativa) = are_vizinho.getDistancia();
                     this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).precedente = are_vizinho.getId_vertice_origem().getId_vertice();
                 }  
-                System.out.println(are_vizinho.getId_vertice_origem()+ "  -  " +are_vizinho.getId_vertice_destino()+" distância: "+are_vizinho.getDistancia());
+                System.out.println(are_vizinho.getId_vertice_origem().getId_vertice()+ "  -  " +are_vizinho.getId_vertice_destino().getId_vertice()+" distância: "+are_vizinho.getDistancia());
             }       
          }
          

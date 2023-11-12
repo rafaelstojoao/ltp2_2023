@@ -16,14 +16,13 @@ public class Grafo {
 
     public void adicionarVertice(Vertice vertice) {
         if (!vertices.containsKey(vertice.getId_vertice())) {
-            vertice.Add(vertice);
+            //vertice.Add(vertice);
             vertices.put(vertice.getId_vertice(), vertice);
         }
     }
 
-    public void adicionarAresta(Aresta aresta) {       
-        if (!arestas.containsKey(aresta.getId_aresta())) {
-            aresta.Add(aresta);
+    public void adicionarAresta(Aresta aresta) {  
+        if (!arestas.containsKey(aresta.getId_aresta())) {    
             arestas.put(aresta.getId_aresta(), aresta);
         }
     }

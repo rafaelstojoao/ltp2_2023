@@ -21,12 +21,80 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id_aresta")
 public class Aresta {
+
+    /**
+     * @return the id_aresta
+     */
+    public int getId_aresta() {
+        return id_aresta;
+    }
+
+    /**
+     * @param id_aresta the id_aresta to set
+     */
+    public void setId_aresta(int id_aresta) {
+        this.id_aresta = id_aresta;
+    }
+
+    /**
+     * @return the distancia
+     */
+    public Double getDistancia() {
+        return distancia;
+    }
+
+    /**
+     * @param distancia the distancia to set
+     */
+    public void setDistancia(Double distancia) {
+        this.distancia = distancia;
+    }
+
+    /**
+     * @return the id_vertice_origem
+     */
+    public Vertice getId_vertice_origem() {
+        return id_vertice_origem;
+    }
+
+    /**
+     * @param id_vertice_origem the id_vertice_origem to set
+     */
+    public void setId_vertice_origem(Vertice id_vertice_origem) {
+        this.id_vertice_origem = id_vertice_origem;
+    }
+
+    /**
+     * @return the id_vertice_destino
+     */
+    public Vertice getId_vertice_destino() {
+        return id_vertice_destino;
+    }
+
+    /**
+     * @param id_vertice_destino the id_vertice_destino to set
+     */
+    public void setId_vertice_destino(Vertice id_vertice_destino) {
+        this.id_vertice_destino = id_vertice_destino;
+    }
+
+    /**
+     * @return the direcao
+     */
+    public Direcao getDirecao() {
+        return direcao;
+    }
+
+    /**
+     * @param direcao the direcao to set
+     */
+    public void setDirecao(Direcao direcao) {
+        this.direcao = direcao;
+    }
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_aresta;
-    private String descricao_vertice_origem;
-    private String descricao_vertice_destino;
     private Double distancia;
     
     @ManyToOne
@@ -43,8 +111,6 @@ public class Aresta {
     
     public Aresta(Aresta json) {
         this.id_aresta                  = json.id_aresta;
-        this.descricao_vertice_origem   = json.descricao_vertice_origem;
-        this.descricao_vertice_destino  = json.descricao_vertice_destino;
         this.distancia                  = json.distancia;
         this.id_vertice_destino         = json.id_vertice_destino;
         this.id_vertice_origem          = json.id_vertice_origem;
@@ -53,12 +119,10 @@ public class Aresta {
     
     
     public void Add(Aresta aresta) {
-        this.id_aresta                  = aresta.id_aresta;
-        this.id_vertice_origem          = aresta.id_vertice_origem;
-        this.descricao_vertice_origem   = aresta.descricao_vertice_origem;
-        this.id_vertice_destino         = aresta.id_vertice_destino;
-        this.descricao_vertice_destino  = aresta.descricao_vertice_destino;
-        this.direcao                    = aresta.direcao;  
-        this.distancia                  = aresta.distancia;
+        this.setId_aresta(aresta.getId_aresta());
+        this.setId_vertice_origem(aresta.getId_vertice_origem());
+        this.setId_vertice_destino(aresta.getId_vertice_destino());
+        this.setDirecao(aresta.getDirecao());  
+        this.setDistancia(aresta.getDistancia());
     }
 }

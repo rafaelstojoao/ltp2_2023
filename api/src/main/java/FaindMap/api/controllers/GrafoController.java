@@ -4,7 +4,6 @@ import FaindMap.api.Arestas.Aresta;
 import FaindMap.api.Repository.ArestaRepository;
 import Grafo.Dijkstra;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,11 +34,11 @@ public class GrafoController {
         }
         
         Dijkstra foo = new Dijkstra();
-        foo.runDijkstraSearch(origem, grafo);
-        foo.showRoute(destino);
 //        grafo.listaVertices();
 //        System.out.println("----");
 //        grafo.listaArestas();
+        foo.runDijkstraSearch(origem, grafo);
+        foo.showRoute(destino);
                 
     }      
 }

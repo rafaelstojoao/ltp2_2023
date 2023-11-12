@@ -3,7 +3,8 @@ package FaindMap.api.Vertice;
 import FaindMap.api.Andares.Andar;
 import FaindMap.api.Blocos.Bloco;
 import FaindMap.api.Campus.Campus;
-import FaindMap.api.Entity.Status;
+import FaindMap.api.Locais.Local;
+import FaindMap.api.Status.Status;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -45,7 +46,10 @@ public class Vertice {
     @ManyToOne
     @JoinColumn(name = "id_bloco")
     private Bloco bloco;   
-   
+    @ManyToOne
+    @JoinColumn(name = "id_local")
+    private Local local; 
+    
     public Vertice(DadosCadastroVertice json) {
         this.nome       = json.nome();
         this.bloco      = json.bloco();
@@ -54,18 +58,20 @@ public class Vertice {
         this.longitude  = json.longitude();
         this.status     = json.status();
         this.campus     = json.campus();
+        this.local      = json.local();
     }
     
     public void Add(Vertice vertice) {
         this.id_vertice = vertice.id_vertice;
         this.peso = Integer.MAX_VALUE;
         
-        this.campus = vertice.campus;
-        this.andar = vertice.andar;
-        this.bloco = vertice.bloco;
-        this.nome = vertice.nome;
-        this.status = vertice.status;
-        this.latitude = vertice.latitude;
-        this.longitude = vertice.longitude;
+        this.campus     = vertice.campus;
+        this.andar      = vertice.andar;
+        this.bloco      = vertice.bloco;
+        this.nome       = vertice.nome;
+        this.status     = vertice.status;
+        this.local      = vertice.local;
+        this.latitude   = vertice.latitude;
+        this.longitude  = vertice.longitude;
     }
 }
