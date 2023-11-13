@@ -45,4 +45,26 @@ public class Grafo {
             System.out.println(" Value : " + arestas.get(key).getDistancia());
         }
     }
+    
+    public void duplicaAresta(){
+        int size = arestas.size();
+        Map<Integer, Aresta> aux = new HashMap<>(); 
+        for (Aresta value : arestas.values()) {
+            
+            Aresta arestaNew = new Aresta();
+            arestaNew.setDirecao(value.getDirecao());
+            arestaNew.setDistancia(value.getDistancia());
+            arestaNew.setId_vertice_destino(value.getId_vertice_origem());
+            arestaNew.setId_vertice_origem(value.getId_vertice_destino());
+            arestaNew.setId_aresta(value.getId_aresta() + size);
+            
+            if (!arestas.containsKey(arestaNew.getId_aresta())) {
+                aux.put(arestaNew.getId_aresta(), arestaNew);
+
+            }
+        }
+        for (Aresta aresta : aux.values()) {
+            arestas.put(aresta.getId_aresta(), aresta);
+        }
+    }
 }

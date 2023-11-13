@@ -11,7 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import FaindMap.api.Repository.VerticeRepository;
 import FaindMap.api.Vertice.Vertice;
+import Grafo.Caminho;
 import Grafo.Grafo;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.web.PageableDefault;
 
 @RestController
 @RequestMapping("faindmap/buscar")
@@ -22,23 +32,44 @@ public class GrafoController {
     @Autowired
     private ArestaRepository repositoryAresta;
     
-    @GetMapping("/{origem}/{destino}") //Page<ListagemGrafo>
-    public void Buscar(@PathVariable int origem, @PathVariable int destino, Pageable paginacao){
+    @GetMapping("/{origem}/{destino}") //Page<ListagemGrafo>Page<DadosListagemVertice>
+    public Page<ArrayList<Caminho>> Buscar(@PathVariable int origem, @PathVariable int destino, @PageableDefault(sort = {}) Pageable paginacao){
         
         Grafo grafo = new Grafo();
+        int destinoAux = destino;
+        
         for (Vertice vertice : repositoryVertice.findAll()) {
             grafo.adicionarVertice(vertice);
         }
         for (Aresta aresta : repositoryAresta.findAll()) {
             grafo.adicionarAresta(aresta);
         }
+        //grafo.duplicaAresta();
         
+        Map<Integer, Caminho> retorno = new HashMap<>();
+        ArrayList<Caminho> caminho = new ArrayList<>();
         Dijkstra foo = new Dijkstra();
-//        grafo.listaVertices();
-//        System.out.println("----");
-//        grafo.listaArestas();
+        
         foo.runDijkstraSearch(origem, grafo);
-        foo.showRoute(destino);
-                
-    }      
+        retorno = foo.showRoute(destino);
+        
+        while(retorno.get(destinoAux).estimativa > 0){  
+            caminho.add(retorno.get(destinoAux));
+            
+            destinoAux = retorno.get(destinoAux).precedente;   
+        }
+        //Gson gson = (new GsonBuilder()).create();
+        //String json = gson.toJson(retorno);
+        
+        Page<ArrayList<Caminho>> page = new PageImpl<>(Collections.singletonList(caminho), paginacao, 1);
+//        for (ArrayList<Caminho> arrayList : page.getContent()) {
+//            for (Caminho caminho : arrayList) {
+//                System.out.println(caminho.vertice.getId_vertice());
+//            }
+//            
+//        }
+        
+        return page;
+            
+    }
 }

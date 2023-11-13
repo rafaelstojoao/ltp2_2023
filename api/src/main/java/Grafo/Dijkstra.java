@@ -20,7 +20,7 @@ public class Dijkstra {
             Caminho rota =  new Caminho();
             rota.estimativa= MAX_VALUE;
             rota.precedente = -1;
-            rota.vert = grafo.vertices.get(key);
+            rota.vertice = grafo.vertices.get(key);
             rota.aberto = true;
             this.caminho.put(key, rota); 
         }
@@ -95,12 +95,16 @@ public class Dijkstra {
         }
     }
 
-    public void showRoute(int ponto_destino) {
+    public Map<Integer, Caminho> showRoute(int ponto_destino) {
+        Map<Integer, Caminho> retorno = new HashMap<>();
         System.out.println("");
         System.out.println("APRESENTANDO O CAMINHO MAIS EFICIENTE A PARTIR DE: "+this.origem.getId_vertice()+ " ATÉ: "+ponto_destino);
         while(this.caminho.get(ponto_destino).estimativa > 0){
             System.out.println(" Para chegar a: "+ponto_destino +"  Passe por:  "+this.caminho.get(ponto_destino).precedente+ " distância total até o destino: " +this.caminho.get(ponto_destino).estimativa);
-            ponto_destino = this.caminho.get(ponto_destino).precedente;
-        }       
+            retorno.put(this.caminho.get(ponto_destino).vertice.getId_vertice(), this.caminho.get(ponto_destino));
+            ponto_destino = this.caminho.get(ponto_destino).precedente; 
+        }  
+        
+        return this.caminho;
     }       
 }
