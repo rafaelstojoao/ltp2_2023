@@ -1,6 +1,7 @@
 package com.CC.FaindMap.WebApp.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,11 @@ public class HomeController {
     }
 
     @PostMapping("/rota")
-    public String Rota(@RequestParam int idOrigem, @RequestParam int idDestino) {
+    public String Rota(@RequestParam int idOrigem, @RequestParam int idDestino, Model model) {
+
+        model.addAttribute("idOrigem", idOrigem);
+        model.addAttribute("idDestino", idDestino);
+
         return "Home/Rota";
     }
 }

@@ -18,6 +18,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <section id="pagina_rota" class="container">
 
+            <input type='hidden' id="origem" th:value='${idOrigem}' />
+            <input type='hidden' id="destino" th:value='${idDestino}' />
+            
             <h5>Próximo Passo</h5>
 
             <div id="cards">
@@ -29,111 +32,62 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </div>
 
         </section>
+        
+        <div class='load show'>
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
 
+        <div class='final'>
+            <h2>VOCÊ CHEGOU NO SEU DESTINO!</h2>
+            <a href="/buscar" class="btn btn-dark">FAZER NOVA ROTA</a>
+        </div>
+        
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script type="text/javascript">
-            const arestas = [
-                {
-                    id: 1,
-                    origem: {
-                        id: 1,
-                        nome: 'Sala 1',
-                        campos: 'Campos 2',
-                        andar: 1,
-                        bloco: 'Bloco IV'
-                    },
-                    destino: {
-                        id: 2,
-                        nome: 'Sala 2',
-                        campos: 'Campos 2',
-                        andar: 1,
-                        bloco: 'Bloco IV'
-                    },
-                    distancia: 10,
-                    direcao: "Frente"
-                },
-                {
-                    id: 2,
-                    origem: {
-                        id: 2,
-                        nome: 'Sala 2',
-                        campos: 'Campos 2',
-                        andar: 1,
-                        bloco: 'Bloco IV'
-                    },
-                    destino: {
-                        id: 3,
-                        nome: 'Sala 3',
-                        campos: 'Campos 2',
-                        andar: 1,
-                        bloco: 'Bloco IV'
-                    },
-                    distancia: 9,
-                    direcao: "Frente"
-                },
-                {
-                    id: 3,
-                    origem: {
-                        id: 3,
-                        nome: 'Sala 3',
-                        campos: 'Campos 2',
-                        andar: 1,
-                        bloco: 'Bloco IV'
-                    },
-                    destino: {
-                        id: 4,
-                        nome: 'Sala 4',
-                        campos: 'Campos 2',
-                        andar: 2,
-                        bloco: 'Bloco IV'
-                    },
-                    distancia: 15,
-                    direcao: "Esquerda"
-                },
-                {
-                    id: 4,
-                    origem: {
-                        id: 4,
-                        nome: 'Sala 4',
-                        campos: 'Campos 2',
-                        andar: 2,
-                        bloco: 'Bloco IV'
-                    },
-                    destino: {
-                        id: 5,
-                        nome: 'Sala 5',
-                        campos: 'Campos 2',
-                        andar: 2,
-                        bloco: 'Bloco IV'
-                    },
-                    distancia: 13,
-                    direcao: "Direita"
-                }
-            ];
-
-            const arestasPassadas = [];
-
             $(function () {
+                let arestas = [];
+                let arestasPassadas = [];
+            
                 let $cards = $("#cards");
-
-                arestas.forEach((v) => {
-                    let card = $('#cardTemplate').html();
-                    card = card.replaceAll('{{id}}', v.id);
-                    card = card.replaceAll('{{title}}', v.destino.nome);
-                    card = card.replaceAll('{{subtitle}}', `${v.destino.bloco} - Andar ${v.destino.andar} - ${v.destino.campos}`);
-                    card = card.replaceAll('{{text}}', `Distância: ${v.distancia}<br>Direção: ${v.direcao}`);
-                    $cards.append(card);
+                
+                let idOrigem = $('#origem').val();
+                let idDestino = $('#destino').val();
+                $.ajax({
+                    url: `http://localhost:8081/faindmap/buscar/${idOrigem}/${idDestino}`,
+                    success: function(response) {
+                        arestas = response.content[0].reverse();
+                        exibirCaminho();
+                        $('.load').removeClass('show');
+                    }
                 });
 
+                function exibirCaminho()
+                {
+                    arestas.forEach((v) => {
+                        let card = $('#cardTemplate').html();
+                        card = card.replaceAll('{{id}}', v.vertice.id_vertice);
+                        card = card.replaceAll('{{title}}', v.vertice.nome);
+                        card = card.replaceAll('{{subtitle}}', `${v.vertice.bloco.nome} - ${v.vertice.andar.nome} - ${v.vertice.campus.descricao}`);
+                        /*card = card.replaceAll('{{text}}', `Distância: ${v.distancia}<br>Direção: ${v.direcao}`);*/
+                        $cards.append(card);
+                    });
+                }
+
                 $('#proximo').on('click', function () {
-                    if (arestas.length === 0)
+                    if (arestas.length === 0){
                         return;
+                    }
 
                     let aresta = arestas.shift();
-                    $(`#aresta${aresta.id}`).hide('slide', null, 500);
+                    $(`#aresta${aresta.vertice.id_vertice}`).hide('fade', null, 500);
                     arestasPassadas.push(aresta);
+                    
+                    if(arestas.length === 0)
+                        $('.final').addClass('show');
                 });
 
                 $('#anterior').on('click', function () {
@@ -141,7 +95,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         return;
 
                     let aresta = arestasPassadas.pop();
-                    $(`#aresta${aresta.id}`).show('slide', null, 500);
+                    $(`#aresta${aresta.vertice.id_vertice}`).show('fade', null, 500);
                     arestas.unshift(aresta);
                 });
             });
@@ -151,10 +105,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="card" id="aresta{{id}}">
                 <div class="card-body">
                     <h5 class="card-title">{{title}}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">{{subtitle}}</h6>
-            <p class="card-text">{{text}}</p>
-        </div>
-    </div>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{subtitle}}</h6>
+                    <!-- <p class="card-text">{{text}}</p> -->
+                </div>
+            </div>
         </script>
     </body>
 </html>

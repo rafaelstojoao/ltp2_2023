@@ -37,41 +37,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
             </form>
         </section>
-
+        
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script type="text/javascript">
-            $(function () {
+            $(function () {            
                 $('.search').autocomplete({
                     source: function (request, response) {
-                        /*$.ajax({
-                         url: '',
-                         dataType: 'json',
-                         data: {
-                         term: request.term
-                         },
-                         success: function (data) {
-                         response(data);
-                         }
-                         });*/
+                        let vertices;
+                        $.ajax({
+                            url: 'http://localhost:8081/faindmap/vertice',
+                            dataType: 'json',
+                            success: function (data) {
+                                vertices = data.content.filter((v) => v.nome.toLowerCase().includes(request.term));
 
-                        let dados = [
-                            {
-                                id: 1,
-                                label: 'Sala 1 - Bloco IV - Campos 2'
-                            },
-                            {
-                                id: 2,
-                                label: 'Sala 2 - Bloco IV - Campos 2'
-                            },
-                            {
-                                id: 3,
-                                label: 'Sala 3 - Bloco IV - Campos 2'
+                                response(vertices.map(function(v) {
+                                        return { id: v.id, value: `${v.nome} - ${v.bloco.nome} - ${v.campus.descricao}` }
+                                    }
+                                ));
                             }
-                        ];
-                        response(dados);
+                         });
                     },
                     minLength: 0,
                     select: function (event, ui) {

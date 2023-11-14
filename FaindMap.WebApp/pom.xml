@@ -14,7 +14,7 @@
     <name>FaindMap.WebApp</name>
     <description>Projeto de localização da faculdade FAI</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>19</java.version>
     </properties>
     <dependencies>
         <dependency>
