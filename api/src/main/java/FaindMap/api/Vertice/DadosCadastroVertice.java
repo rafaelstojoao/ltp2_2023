@@ -11,6 +11,9 @@ import jakarta.validation.constraints.Pattern;
 
 public record DadosCadastroVertice(
         @NotBlank
+        Integer id_vertice, 
+        
+        @NotBlank
         String nome, 
         
         @NotNull

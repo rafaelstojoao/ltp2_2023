@@ -6,9 +6,10 @@ import FaindMap.api.Campus.Campus;
 import FaindMap.api.Locais.Local;
 import FaindMap.api.Status.Status;
 
-public record DadosListagemVertice(String nome, Campus campus, Status status, Bloco bloco, Andar andar, Local local, Double longitude, Double latitude) {
+public record DadosListagemVertice(Integer id_vertice, String nome, Campus campus, Status status, Bloco bloco, Andar andar, Local local, Double longitude, Double latitude) {
     public DadosListagemVertice(Vertice vertice){
-        this(vertice.getNome(), 
+        this(vertice.getId_vertice(),
+           vertice.getNome(), 
            vertice.getCampus(), 
            vertice.getStatus(), 
             vertice.getBloco(), 

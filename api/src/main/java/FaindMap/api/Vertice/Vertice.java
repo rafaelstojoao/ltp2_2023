@@ -51,6 +51,7 @@ public class Vertice {
     private Local local; 
     
     public Vertice(DadosCadastroVertice json) {
+        this.id_vertice = json.id_vertice();
         this.nome       = json.nome();
         this.bloco      = json.bloco();
         this.andar      = json.andar();

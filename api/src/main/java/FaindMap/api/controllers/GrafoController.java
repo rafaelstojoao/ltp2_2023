@@ -13,8 +13,6 @@ import FaindMap.api.Repository.VerticeRepository;
 import FaindMap.api.Vertice.Vertice;
 import Grafo.Caminho;
 import Grafo.Grafo;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -58,16 +56,7 @@ public class GrafoController {
             
             destinoAux = retorno.get(destinoAux).precedente;   
         }
-        //Gson gson = (new GsonBuilder()).create();
-        //String json = gson.toJson(retorno);
-        
         Page<ArrayList<Caminho>> page = new PageImpl<>(Collections.singletonList(caminho), paginacao, 1);
-//        for (ArrayList<Caminho> arrayList : page.getContent()) {
-//            for (Caminho caminho : arrayList) {
-//                System.out.println(caminho.vertice.getId_vertice());
-//            }
-//            
-//        }
         
         return page;
             

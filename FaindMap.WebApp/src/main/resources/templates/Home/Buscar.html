@@ -54,7 +54,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 vertices = data.content.filter((v) => v.nome.toLowerCase().includes(request.term));
 
                                 response(vertices.map(function(v) {
-                                        return { id: v.id, value: `${v.nome} - ${v.bloco.nome} - ${v.campus.descricao}` }
+                                        return { id: v.id_vertice, value: `${v.nome} - ${v.bloco.nome} - ${v.campus.descricao}` }
                                     }
                                 ));
                             }
@@ -64,6 +64,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     select: function (event, ui) {
                         let id = event.target.dataset.id;
                         $(`#${id}`).val(ui.item.id);
+                        console.log(id);
+                        console.log(ui.item);
                     }
                 }).focus(function (event) {
                     $(event.target).autocomplete('search', '');
