@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Rota - FAIND MAP</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" href="/imagens/logo.png" />
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="site.css" rel="stylesheet">
+    </head>
+    <body>
+        <section id="pagina_rota" class="container">
+
+            <input type='hidden' id="origem" th:value='${idOrigem}' />
+            <input type='hidden' id="destino" th:value='${idDestino}' />
+            
+            <h5>Próximo Passo</h5>
+
+            <div id="cards">
+            </div>
+
+            <div id="opcoes">
+                <button class="btn btn-dark" id="anterior">Passo Anterior</button>
+                <button class="btn btn-dark" id="proximo">Próximo Passo</button>
+            </div>
+
+        </section>
+        
+        <div class='load show'>
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div class='final'>
+            <h2>VOCÊ CHEGOU NO SEU DESTINO!</h2>
+            <a href="/buscar" class="btn btn-dark">FAZER NOVA ROTA</a>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript">
+            $(function () {
+                let arestas = [];
+                let arestasPassadas = [];
+            
+                let $cards = $("#cards");
+                
+                let idOrigem = $('#origem').val();
+                let idDestino = $('#destino').val();
+                $.ajax({
+                    url: `http://localhost:8081/faindmap/buscar/${idOrigem}/${idDestino}`,
+                    success: function(response) {
+                        arestas = response.content[0].reverse();
+                        exibirCaminho();
+                        $('.load').removeClass('show');
+                    }
+                });
+
+                function exibirCaminho()
+                {
+                    arestas.forEach((v) => {
+                        let card = $('#cardTemplate').html();
+                        card = card.replaceAll('{{id}}', v.vertice.id_vertice);
+                        card = card.replaceAll('{{title}}', v.vertice.nome);
+                        card = card.replaceAll('{{subtitle}}', `${v.vertice.bloco.nome} - ${v.vertice.andar.nome} - ${v.vertice.campus.descricao}`);
+                        /*card = card.replaceAll('{{text}}', `Distância: ${v.distancia}<br>Direção: ${v.direcao}`);*/
+                        $cards.append(card);
+                    });
+                }
+
+                $('#proximo').on('click', function () {
+                    if (arestas.length === 0){
+                        return;
+                    }
+
+                    let aresta = arestas.shift();
+                    $(`#aresta${aresta.vertice.id_vertice}`).hide('fade', null, 500);
+                    arestasPassadas.push(aresta);
+                    
+                    if(arestas.length === 0)
+                        $('.final').addClass('show');
+                });
+
+                $('#anterior').on('click', function () {
+                    if (arestasPassadas.length === 0)
+                        return;
+
+                    let aresta = arestasPassadas.pop();
+                    $(`#aresta${aresta.vertice.id_vertice}`).show('fade', null, 500);
+                    arestas.unshift(aresta);
+                });
+            });
+        </script>
+
+        <script id="cardTemplate" type="text/template">
+            <div class="card" id="aresta{{id}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{subtitle}}</h6>
+                    <!-- <p class="card-text">{{text}}</p> -->
+                </div>
+            </div>
+        </script>
+    </body>
+</html>
