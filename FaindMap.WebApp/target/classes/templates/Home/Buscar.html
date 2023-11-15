@@ -48,7 +48,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     source: function (request, response) {
                         let vertices;
                         $.ajax({
-                            url: 'http://localhost:8081/faindmap/vertice',
+                            url: 'http://190.111.176.23:8081/faindmap/vertice',
                             dataType: 'json',
                             success: function (data) {
                                 vertices = data.content.filter((v) => v.nome.toLowerCase().includes(request.term));

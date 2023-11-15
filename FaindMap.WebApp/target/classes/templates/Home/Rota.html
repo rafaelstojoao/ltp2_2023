@@ -57,7 +57,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 let idOrigem = $('#origem').val();
                 let idDestino = $('#destino').val();
                 $.ajax({
-                    url: `http://localhost:8081/faindmap/buscar/${idOrigem}/${idDestino}`,
+                    url: `http://190.111.176.23:8081/faindmap/buscar/${idOrigem}/${idDestino}`,
                     success: function(response) {
                         arestas = response.content[0].reverse();
                         exibirCaminho();

@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.CC</groupId>
     <artifactId>FaindMap.WebApp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>FaindMap.WebApp</name>
     <description>Projeto de localização da faculdade FAI</description>
     <properties>
