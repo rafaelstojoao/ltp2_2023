@@ -42,7 +42,7 @@ public class GrafoController {
         for (Aresta aresta : repositoryAresta.findAll()) {
             grafo.adicionarAresta(aresta);
         }
-        //grafo.duplicaAresta();
+        grafo.duplicaAresta();
         
         Map<Integer, Caminho> retorno = new HashMap<>();
         ArrayList<Caminho> caminho = new ArrayList<>();

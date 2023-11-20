@@ -46,13 +46,14 @@ public class Dijkstra {
             System.out.println("Verificando Lista dos Adjascentes");
             while(!this.fila_arestas_adjascentes.isEmpty()){
                 Aresta are_vizinho = this.fila_arestas_adjascentes.poll();
-                 
-                this.fila_vertices_processar.add(grafo.vertices.get(are_vizinho.getId_vertice_destino().getId_vertice()));
-
                 this.caminho.get(are_vizinho.getId_vertice_origem().getId_vertice()).aberto=false;
-                 
-                if(this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).estimativa > are_vizinho.getDistancia()){
-                    (this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).estimativa) = are_vizinho.getDistancia();
+                
+                if(this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).aberto){
+                    this.fila_vertices_processar.add(grafo.vertices.get(are_vizinho.getId_vertice_destino().getId_vertice()));
+                }
+                                                                                                       
+                if(this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).estimativa > are_vizinho.getDistancia().intValue()){
+                    this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).estimativa = are_vizinho.getDistancia().intValue();                                                                                       
                     this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).precedente = are_vizinho.getId_vertice_origem().getId_vertice();
                 }  
                 System.out.println(are_vizinho.getId_vertice_origem().getId_vertice()+ "  -  " +are_vizinho.getId_vertice_destino().getId_vertice()+" distância: "+are_vizinho.getDistancia());
@@ -79,8 +80,8 @@ public class Dijkstra {
                     this.fila_vertices_processar.add(grafo.vertices.get(are_vizinho.getId_vertice_destino().getId_vertice()));
                 }
 
-                if(this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).estimativa > (are_vizinho.getDistancia()+ this.caminho.get(are_vizinho.getId_vertice_origem().getId_vertice()).estimativa)){
-                    this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).estimativa = (int)(are_vizinho.getDistancia() + this.caminho.get(are_vizinho.getId_vertice_origem().getId_vertice()).estimativa);
+                if(this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).estimativa > (are_vizinho.getDistancia().intValue() + this.caminho.get(are_vizinho.getId_vertice_origem().getId_vertice()).estimativa)){
+                    this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).estimativa = are_vizinho.getDistancia().intValue() + this.caminho.get(are_vizinho.getId_vertice_origem().getId_vertice()).estimativa;
                     this.caminho.get(are_vizinho.getId_vertice_destino().getId_vertice()).precedente = are_vizinho.getId_vertice_origem().getId_vertice();
                 }
                 System.out.println(are_vizinho.getId_vertice_origem().getId_vertice()+ "  -  " +are_vizinho.getId_vertice_destino().getId_vertice()+" distância: "+are_vizinho.getDistancia());
