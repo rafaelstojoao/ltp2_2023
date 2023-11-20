@@ -26,17 +26,16 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id_vertice")
 public class Vertice {
     
-    @Transient
-    private double peso;
+    private transient double peso;
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_vertice;
     private String nome;
-    private double latitude;
-    private double longitude;
+    private transient double latitude;
+    private transient double longitude;
     @ManyToOne
     @JoinColumn(name = "id_status")
-    private Status status;
+    private transient Status status;
     @ManyToOne
     @JoinColumn(name = "id_campus")
     private Campus campus;

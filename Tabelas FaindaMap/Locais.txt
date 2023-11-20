@@ -1,0 +1,96 @@
+update locais set nome_local = concat(nome_local, ' ', num_local);
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 16, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 17, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 18, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 19, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 20, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 21, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 22, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 23, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 24, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 25, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 26, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 27, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 29, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 30, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 31, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 32, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 33, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 34, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 35, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 36, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Refeitório', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 43, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 44, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 45, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 46, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 47, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 48, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 49, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 50, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 51, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 52, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 53, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 54, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 55, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 37, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 40, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 42, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório_Maquiagem/TerapiaCapilar', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório_Pedagia', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala_professores', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Labroatório de Desenho Tecnico', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Museu de Zoologia | Labroatório de Zoologia', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório Analise de Solos e Controle Ambiental | Laboratório de Quimica Analitica', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório BioTecnologia e Botanica', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório de Analise Fisico-Quimica e Águas', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório de Fisioterapia 2', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório de Fisioterapia 1   ', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório de Geologia Topografia e Cartografia', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório de Tecnicas Cirúrgicas', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório Microbiologia', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório Análises Clínicas', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório de Informatica', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Secretaria', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 39, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala de TI', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório de Estética Corporal e Facial', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Laboratório de Zoologia', -1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 1, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 2, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 3, N'Laboratório de informática 5')
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 4, N'Laboratório de informática 6')
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 5, N'Laboratório de informática 7')
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 6, N'Laboratório de informática 8')
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 7, N'Laboratório de informática 9')
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 8, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 9, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 10, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 11, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 12, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Sala', 13, NULL)
+INSERT [dbo].[LOCAIS] ([Nome_local], [num_local], [Nome_laboratorio]) VALUES (N'Auditório', 14, NULL)
+
+USE [faindmapdb]
+GO
+
+/****** Object:  Table [dbo].[locais]    Script Date: 19/11/2023 09:36:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[locais](
+	[id_local] [int] IDENTITY(1,1) NOT NULL,
+	[num_local] [int] NOT NULL,
+	[nome_local] [varchar](255) NOT NULL,
+	[nome_laboratorio] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id_local] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+

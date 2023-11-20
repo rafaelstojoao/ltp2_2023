@@ -22,8 +22,8 @@ public class Local {
     @GeneratedValue(strategy = GenerationType.IDENTITY)       
     private int id_local;
     
-    private int num_local;
+    private transient int num_local;
     private String nome_local;
-    private String nome_laboratorio;
+    private transient String nome_laboratorio;
     
 }

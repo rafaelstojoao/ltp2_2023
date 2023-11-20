@@ -1,0 +1,36 @@
+INSERT [dbo].[ANDARES] ([ID_STATUS], [NOME]) VALUES (1, N'1ºAndar')
+INSERT [dbo].[ANDARES] ([ID_STATUS], [NOME]) VALUES (1, N'2ºAndar')
+INSERT [dbo].[ANDARES] ([ID_STATUS], [NOME]) VALUES (1, N'3ºAndar')
+INSERT [dbo].[ANDARES] ([ID_STATUS], [NOME]) VALUES (1, N'Terreo')
+INSERT [dbo].[ANDARES] ([ID_STATUS], [NOME]) VALUES (1, N'4ºAndar')
+
+
+USE [faindmapdb]
+GO
+
+/****** Object:  Table [dbo].[andares]    Script Date: 19/11/2023 09:37:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[andares](
+	[id_andar] [int] IDENTITY(1,1) NOT NULL,
+	[id_status] [int] NOT NULL,
+	[nome] [varchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id_andar] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[andares]  WITH CHECK ADD  CONSTRAINT [fk_andares_status] FOREIGN KEY([id_status])
+REFERENCES [dbo].[status] ([id_status])
+GO
+
+ALTER TABLE [dbo].[andares] CHECK CONSTRAINT [fk_andares_status]
+GO
+
+

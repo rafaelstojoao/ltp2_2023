@@ -26,7 +26,7 @@ public class Bloco {
     private int id_bloco;
     @ManyToOne
     @JoinColumn(name = "id_status")
-    private Status status;
+    private transient Status status;
     private String nome;
             
 }
