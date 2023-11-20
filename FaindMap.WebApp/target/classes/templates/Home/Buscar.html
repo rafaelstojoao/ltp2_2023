@@ -43,29 +43,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script type="text/javascript">
-            $(function () {            
+            let vertices = [];
+            $(function () { 
+                $.ajax({
+                    url: 'http://localhost:8081/faindmap/vertice',
+                    dataType: 'json',
+                    success: function (data) {
+                        vertices = data.content.map((c) => {
+                            return { 
+                                id_vertice: c.id_vertice, 
+                                nome: `${c.local.nome_local} ${c.local.num_local} ${(c.local.nome_laboratorio !== null ? '/' + c.local.nome_laboratorio : '')} - ${c.bloco.nome} - ${c.campus.descricao}` 
+                            };
+                        });
+                    }
+                 });
+                
                 $('.search').autocomplete({
                     source: function (request, response) {
-                        let vertices;
-                        $.ajax({
-                            url: 'http://localhost:8081/faindmap/vertice',
-                            dataType: 'json',
-                            success: function (data) {
-                                vertices = data.content.filter((v) => v.nome.toLowerCase().includes(request.term));
-
-                                response(vertices.map(function(v) {
-                                        return { id: v.id_vertice, value: `${v.nome} - ${v.bloco.nome} - ${v.campus.descricao}` }
-                                    }
-                                ));
+                        let busca = vertices.filter((v) => v.nome.toLowerCase().includes(request.term.toLowerCase()));
+                        response(busca.map(function(v) {
+                                return { id: v.id_vertice, value: v.nome };
                             }
-                         });
+                        ));
                     },
                     minLength: 0,
                     select: function (event, ui) {
                         let id = event.target.dataset.id;
                         $(`#${id}`).val(ui.item.id);
-                        console.log(id);
-                        console.log(ui.item);
                     }
                 }).focus(function (event) {
                     $(event.target).autocomplete('search', '');

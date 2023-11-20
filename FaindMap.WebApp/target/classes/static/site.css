@@ -126,3 +126,9 @@ body {
 .final.show {
     display: flex;
 }
+
+.ui-autocomplete {
+    width: 100%;
+    max-height: 30rem;
+    overflow: auto;
+}

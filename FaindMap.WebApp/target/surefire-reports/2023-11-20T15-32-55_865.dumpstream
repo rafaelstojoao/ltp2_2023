@@ -1,0 +1,5 @@
+# Created at 2023-11-20T15:32:56.019
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Documents\Faculdade\6º Termo\LTP II\ltp2_2023-develop\FaindMap.WebApp\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
